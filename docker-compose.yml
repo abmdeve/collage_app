@@ -1,20 +1,3 @@
-# # version: '3'
-# services:
-#   expo:
-#     image: node:18
-#     working_dir: /app
-#     build: .
-#     ports:
-#       - "19000:19000"
-#       - "19001:19001"
-#       - "19002:19002"
-#     command: sh -c "npm install -g expo-cli @expo/ngrok@^4.1.0 && npx expo start --tunnel"
-#     volumes:
-#       - .:/app
-#       - /app/node_modules
-#     environment:
-#       - NODE_ENV=development
-
 services:
   expo:
     build: .
