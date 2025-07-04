@@ -31,7 +31,7 @@ export default TemplateItem;
 
 const styles = StyleSheet.create({
   templateItem: {
-    marginRight: 12,
+    marginHorizontal: 12,
   },
   templateImage: {
     width: 120,

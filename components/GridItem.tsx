@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   gridItem: {
-    marginRight: 12,
+    marginHorizontal: 12,
   },
   gridRow: {
     flex: 1,
@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
     marginHorizontal: 4,
-    clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+    // clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
   },
 });
