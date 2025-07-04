@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,8 +11,18 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopNavIcon from "../components/TopNavIcon";
+import { DESIGN_OPTIONS, GRID_LAYOUTS, TEMPLATES } from "../constants/layout";
+import DesignOptionItem from "../components/DesignOptionItem";
+import { DesignOptions, GridLayout, Template } from "../types";
+import GridItem from "../components/GridItem";
+import SeeAll from "../components/SeeAll";
+import TemplateItem from "../components/TemplateItem";
 
 const HomeScreen = () => {
+  const handleDesignOptionSelect = (item: DesignOptions) => {};
+  const handleGridSelect = (item: GridLayout) => {};
+  const handleTemplateSelect = (item: Template) => {};
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -44,6 +55,54 @@ const HomeScreen = () => {
           <TopNavIcon name="happy-outline" label="AI Tools" />
           <TopNavIcon name="color-palette-outline" label="AI Tools" />
         </View>
+
+        {/* DESIGN OPTIONS */}
+        <View style={styles.section}>
+          <FlatList
+            horizontal
+            data={DESIGN_OPTIONS}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.listContainer}
+            renderItem={({ item }) => (
+              <DesignOptionItem
+                item={item}
+                onPress={() => handleDesignOptionSelect(item)}
+              />
+            )}
+          />
+        </View>
+
+        {/* GRID AND ALL */}
+        <View style={styles.section}>
+          <SeeAll left="Grid" right="See All" />
+
+          {/* GRID LAYOUT */}
+          <FlatList
+            horizontal
+            data={GRID_LAYOUTS}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <GridItem item={item} onPress={() => handleGridSelect(item)} />
+            )}
+          />
+        </View>
+
+        {/* SPRING STORY AND ALL */}
+        <View style={styles.section}>
+          <SeeAll left="Spring Story" right="See All" />
+          {/* GRID LAYOUT */}
+          <FlatList
+            horizontal
+            data={TEMPLATES}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <TemplateItem item={item} onPress={() => handleTemplateSelect(item)} />
+            )}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -74,7 +133,7 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   settingsIcon: {
-    marginRight: 6
+    marginRight: 6,
   },
   shopIcon: {
     marginLeft: 8,
@@ -90,5 +149,28 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 12,
     paddingHorizontal: 8,
+  },
+  listContainer: {
+    paddingHorizontal: 16,
+  },
+  section: {
+    marginVertical: 20,
+  },
+  sectionHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  seeAll: {
+    fontSize: 14,
+    color: "#FF5A5F",
+    fontWeight: "600",
   },
 });
