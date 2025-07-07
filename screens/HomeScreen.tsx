@@ -11,16 +11,32 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopNavIcon from "../components/TopNavIcon";
-import { DESIGN_OPTIONS, GRID_LAYOUTS, TEMPLATES } from "../constants/layout";
+import {
+  BIRTHDAY_TEMPLATES,
+  DESIGN_OPTIONS,
+  GRID_LAYOUTS,
+  TEMPLATES,
+} from "../constants/layout";
 import DesignOptionItem from "../components/DesignOptionItem";
 import { DesignOptions, GridLayout, Template } from "../types";
 import GridItem from "../components/GridItem";
 import SeeAll from "../components/SeeAll";
 import TemplateItem from "../components/TemplateItem";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { MainStackParamList } from "../navigation/types/navigation";
 
-const HomeScreen = () => {
+const HomeScreen = ({
+  navigation,
+}: NativeStackScreenProps<MainStackParamList>) => {
   const handleDesignOptionSelect = (item: DesignOptions) => {};
-  const handleGridSelect = (item: GridLayout) => {};
+
+  const handleGridSelect = (grid: GridLayout) => {
+    navigation.navigate("Collage", {
+      selectedGrid: grid,
+    });
+  };
+
   const handleTemplateSelect = (item: Template) => {};
 
   return (
@@ -92,14 +108,35 @@ const HomeScreen = () => {
         {/* SPRING STORY AND ALL */}
         <View style={styles.section}>
           <SeeAll left="Spring Story" right="See All" />
-          {/* GRID LAYOUT */}
+          {/* GRID SPRING STORY LAYOUT */}
           <FlatList
             horizontal
             data={TEMPLATES}
             keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-              <TemplateItem item={item} onPress={() => handleTemplateSelect(item)} />
+              <TemplateItem
+                item={item}
+                onPress={() => handleTemplateSelect(item)}
+              />
+            )}
+          />
+        </View>
+
+        {/* HAPPY BIRTHDAY CARD */}
+        <View style={styles.section}>
+          <SeeAll left="Happy Birthday Caed" right="See All" />
+          {/* HAPPY BIRTHDAY CARD LAYOUT */}
+          <FlatList
+            horizontal
+            data={BIRTHDAY_TEMPLATES}
+            keyExtractor={(item) => item.id}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <TemplateItem
+                item={item}
+                onPress={() => handleTemplateSelect(item)}
+              />
             )}
           />
         </View>
