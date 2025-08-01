@@ -47,7 +47,7 @@ const GridItem = ({ item, onPress }: Props) => {
   };
 
   return (
-    <TouchableOpacity style={styles.gridItem}>
+    <TouchableOpacity style={styles.gridItem} onPress={onPress}>
       <View style={styles.gridPreview}>{renderShape()}</View>
     </TouchableOpacity>
   );

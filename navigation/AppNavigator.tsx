@@ -7,11 +7,17 @@ import { StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons"
 import CreateScreen from "./CreateScreen";
 import EditScreen from "./EditScreen";
+import { MainStackParamList } from "./types/navigation";
 
+export type TabsParamList = {
+    Home: undefined;
+    Create: undefined;
+    MyWorks: undefined;
+}
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabsParamList>();
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const HomeStack = () => (
 
@@ -74,7 +80,7 @@ return(
         }}
          />
         <Tab.Screen 
-        name="My Works" 
+        name="MyWorks" 
         component={EditScreen}
         options={{
             tabBarIcon: ({focused}) => (
