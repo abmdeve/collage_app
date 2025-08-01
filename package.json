@@ -20,7 +20,10 @@
     "react-native-safe-area-context": "^5.5.1",
     "react-native-screens": "^4.11.1",
     "rimraf": "^6.0.1",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "expo-media-library": "~17.1.7",
+    "react-native-view-shot": "4.0.3",
+    "expo-image-picker": "~16.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
